@@ -26,7 +26,7 @@ import com.dm.camera.activities.PlayVideoActivity;
 import com.dm.camera.camera.CameraActionListener;
 import com.dm.camera.camera.ImageViewUtils;
 import com.dm.camera.camera.camera1.CameraService;
-import com.dm.camera.constants.IConstants;
+import com.dm.camera.constants.IDMCameraConstants;
 import com.dm.camera.viewPagers.CustomViewPager;
 
 import java.util.concurrent.TimeUnit;
@@ -35,7 +35,7 @@ public class CameraPagerAdapter extends PagerAdapter {
 
     private DMCameraActivity mActivity;
 
-    private IConstants.Camera mLimitCameraType;
+    private IDMCameraConstants.Camera mLimitCameraType;
 
     private CustomViewPager mViewPager;
 
@@ -93,8 +93,8 @@ public class CameraPagerAdapter extends PagerAdapter {
         @Override
         public void onVideoTaken(final String videoPath) {
             final Intent intent = new Intent(mActivity, PlayVideoActivity.class);
-            intent.putExtra(IConstants.BundleKey.PATH, videoPath);
-            mActivity.startActivityForResult(intent, IConstants.RequestCode.VIDEO_PLAY);
+            intent.putExtra(IDMCameraConstants.BundleKey.PATH, videoPath);
+            mActivity.startActivityForResult(intent, IDMCameraConstants.RequestCode.VIDEO_PLAY);
 
             mRecordStopVideoButton.setVisibility(View.GONE);
         }
@@ -106,7 +106,7 @@ public class CameraPagerAdapter extends PagerAdapter {
     };
 
 
-    public CameraPagerAdapter(final DMCameraActivity activity, final IConstants.Camera limitCameraType, final CustomViewPager viewPager) {
+    public CameraPagerAdapter(final DMCameraActivity activity, final IDMCameraConstants.Camera limitCameraType, final CustomViewPager viewPager) {
         mActivity = activity;
         mViewPager = viewPager;
         mLimitCameraType = limitCameraType;
@@ -183,14 +183,14 @@ public class CameraPagerAdapter extends PagerAdapter {
                 case DEFAULT:
                     final Intent intentDefault = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intentDefault.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, mActivity.isMultiplyPhoto());
-                    mActivity.startActivityForResult(intentDefault, IConstants.RequestCode.PICK_PHOTO);
+                    mActivity.startActivityForResult(intentDefault, IDMCameraConstants.RequestCode.PICK_PHOTO);
                     break;
                 case CUSTOM:
                     final  Intent intentCustom = new Intent(mActivity, Gallery.class);
-                    intentCustom.putExtra(IConstants.BundleKey.ACTIONBAR_TITLE, mActivity.getActionBarTitle());
-                    intentCustom.putExtra(IConstants.BundleKey.MODE, IConstants.CustomGalleryMode.PHOTO);
-                    intentCustom.putExtra(IConstants.BundleKey.MAX_SELECTION, mActivity.getMaxSelection());
-                    mActivity.startActivityForResult(intentCustom, IConstants.RequestCode.OPEN_MEDIA_PICKER_FOR_PHOTO);
+                    intentCustom.putExtra(IDMCameraConstants.BundleKey.ACTIONBAR_TITLE, mActivity.getActionBarTitle());
+                    intentCustom.putExtra(IDMCameraConstants.BundleKey.MODE, IDMCameraConstants.CustomGalleryMode.PHOTO);
+                    intentCustom.putExtra(IDMCameraConstants.BundleKey.MAX_SELECTION, mActivity.getMaxSelection());
+                    mActivity.startActivityForResult(intentCustom, IDMCameraConstants.RequestCode.OPEN_MEDIA_PICKER_FOR_PHOTO);
                     break;
             }
         });
@@ -289,14 +289,14 @@ public class CameraPagerAdapter extends PagerAdapter {
                 case DEFAULT:
                     final Intent intentDefault = new Intent(Intent.ACTION_PICK, MediaStore.Video.Media.EXTERNAL_CONTENT_URI);
                     intentDefault.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, mActivity.isMultiplyVideo());
-                    mActivity.startActivityForResult(intentDefault, IConstants.RequestCode.PICK_VIDEO);
+                    mActivity.startActivityForResult(intentDefault, IDMCameraConstants.RequestCode.PICK_VIDEO);
                     break;
                 case CUSTOM:
                     final  Intent intentCustom = new Intent(mActivity, Gallery.class);
-                    intentCustom.putExtra(IConstants.BundleKey.ACTIONBAR_TITLE, mActivity.getActionBarTitle());
-                    intentCustom.putExtra(IConstants.BundleKey.MODE, IConstants.CustomGalleryMode.VIDEO);
-                    intentCustom.putExtra(IConstants.BundleKey.MAX_SELECTION, mActivity.getMaxSelection());
-                    mActivity.startActivityForResult(intentCustom, IConstants.RequestCode.OPEN_MEDIA_PICKER_FOR_VIDEO);
+                    intentCustom.putExtra(IDMCameraConstants.BundleKey.ACTIONBAR_TITLE, mActivity.getActionBarTitle());
+                    intentCustom.putExtra(IDMCameraConstants.BundleKey.MODE, IDMCameraConstants.CustomGalleryMode.VIDEO);
+                    intentCustom.putExtra(IDMCameraConstants.BundleKey.MAX_SELECTION, mActivity.getMaxSelection());
+                    mActivity.startActivityForResult(intentCustom, IDMCameraConstants.RequestCode.OPEN_MEDIA_PICKER_FOR_VIDEO);
                     break;
             }
         });
@@ -393,7 +393,7 @@ public class CameraPagerAdapter extends PagerAdapter {
 
             initFlash();
 
-        }, IConstants.Delay.MILLISECONDS_600);
+        }, IDMCameraConstants.Delay.MILLISECONDS_600);
     }
 
     private void animVideoInfoLayout() {
@@ -434,7 +434,7 @@ public class CameraPagerAdapter extends PagerAdapter {
 
             initFlash();
 
-        }, IConstants.Delay.MILLISECONDS_600);
+        }, IDMCameraConstants.Delay.MILLISECONDS_600);
     }
 
     private void initFlash() {
@@ -460,13 +460,13 @@ public class CameraPagerAdapter extends PagerAdapter {
     private void animateInfoView(final View view) {
         view.animate()
                 .alpha(0.0f)
-                .setDuration(IConstants.Delay.MILLISECONDS_600)
+                .setDuration(IDMCameraConstants.Delay.MILLISECONDS_600)
                 .setListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(final Animator animation) {
                         super.onAnimationEnd(animation);
                         view.setVisibility(View.GONE);
-                        new Handler().postDelayed(() -> mViewPager.setPagingEnabled(true), IConstants.Delay.MILLISECONDS_300);
+                        new Handler().postDelayed(() -> mViewPager.setPagingEnabled(true), IDMCameraConstants.Delay.MILLISECONDS_300);
                     }
                 });
     }
@@ -485,7 +485,7 @@ public class CameraPagerAdapter extends PagerAdapter {
         }
     }
 
-    public void onResume(final IConstants.Camera cameraType) {
+    public void onResume(final IDMCameraConstants.Camera cameraType) {
         new Handler().postDelayed(() -> {
             switch (cameraType) {
                 case PHOTO:
@@ -497,14 +497,14 @@ public class CameraPagerAdapter extends PagerAdapter {
                     initCamera(cameraType);
                     break;
             }
-        }, IConstants.Delay.MILLISECONDS_500);
+        }, IDMCameraConstants.Delay.MILLISECONDS_500);
     }
 
-    public void onStop(final IConstants.Camera cameraType) {
+    public void onStop(final IDMCameraConstants.Camera cameraType) {
         stopCamera(cameraType);
     }
 
-    public void initCamera(final IConstants.Camera cameraType) {
+    public void initCamera(final IDMCameraConstants.Camera cameraType) {
         switch (cameraType) {
             case PHOTO:
                 if (mPhotoCameraService != null) {
@@ -519,7 +519,7 @@ public class CameraPagerAdapter extends PagerAdapter {
         }
     }
 
-    private void stopCamera(final IConstants.Camera cameraType) {
+    private void stopCamera(final IDMCameraConstants.Camera cameraType) {
         switch (cameraType) {
             case PHOTO:
                 mPhotoCameraService.stop();

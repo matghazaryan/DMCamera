@@ -10,9 +10,9 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.dm.camera.R;
-import com.dm.camera.constants.IConstants;
+import com.dm.camera.constants.IDMCameraConstants;
 
-import static com.dm.camera.constants.IConstants.BundleKey.POSITION;
+import static com.dm.camera.constants.IDMCameraConstants.BundleKey.POSITION;
 
 public class PlayVideoActivity extends AppCompatActivity {
 
@@ -72,7 +72,7 @@ public class PlayVideoActivity extends AppCompatActivity {
 
                 findViewById(R.id.btn_done).setOnClickListener(v -> {
                     final Intent intent1 = new Intent();
-                    intent1.putExtra(IConstants.BundleKey.PATH, bundle.getString(IConstants.BundleKey.PATH));
+                    intent1.putExtra(IDMCameraConstants.BundleKey.PATH, bundle.getString(IDMCameraConstants.BundleKey.PATH));
                     setResult(RESULT_OK, intent1);
                     finish();
                 });
@@ -91,7 +91,7 @@ public class PlayVideoActivity extends AppCompatActivity {
 
         try {
             mVideoView.setMediaController(mMediaControls);
-            mVideoView.setVideoPath(bundle.getString(IConstants.BundleKey.PATH));
+            mVideoView.setVideoPath(bundle.getString(IDMCameraConstants.BundleKey.PATH));
             mVideoView.requestFocus();
         } catch (Exception e) {
             e.printStackTrace();

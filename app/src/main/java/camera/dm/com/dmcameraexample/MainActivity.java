@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.dm.camera.activities.DMCameraActivity;
-import com.dm.camera.constants.IConstants;
+import com.dm.camera.constants.IDMCameraConstants;
 import com.dm.camera.models.MediaData;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
 
         final Intent intent = new Intent(this, DMCameraActivity.class);
 
-        intent.putExtra(IConstants.BundleKey.CAMERA_TYPE, IConstants.Camera.PHOTO);
-        intent.putExtra(IConstants.BundleKey.IS_MULTIPLY_GALLERY_IMAGE, false);
-        intent.putExtra(IConstants.BundleKey.IS_MULTIPLY_GALLERY_VIDEO, true);
-        intent.putExtra(IConstants.BundleKey.VIDEO_DURATION_IN_SECONDS, 10);
-        intent.putExtra(IConstants.BundleKey.PICKER_TYPE, IConstants.Picker.DEFAULT);
-        intent.putExtra(IConstants.BundleKey.ACTIONBAR_TITLE, "Gallery");
-        intent.putExtra(IConstants.BundleKey.MAX_COUNT, 3);
+        intent.putExtra(IDMCameraConstants.BundleKey.CAMERA_TYPE, IDMCameraConstants.Camera.PHOTO);
+        intent.putExtra(IDMCameraConstants.BundleKey.IS_MULTIPLY_GALLERY_IMAGE, false);
+        intent.putExtra(IDMCameraConstants.BundleKey.IS_MULTIPLY_GALLERY_VIDEO, true);
+        intent.putExtra(IDMCameraConstants.BundleKey.VIDEO_DURATION_IN_SECONDS, 10);
+        intent.putExtra(IDMCameraConstants.BundleKey.PICKER_TYPE, IDMCameraConstants.Picker.DEFAULT);
+        intent.putExtra(IDMCameraConstants.BundleKey.ACTIONBAR_TITLE, "Gallery");
+        intent.putExtra(IDMCameraConstants.BundleKey.MAX_COUNT, 3);
 
 
         startActivityForResult(intent, REQUEST_CODE_CAMERA);
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     if (data != null) {
                         final Bundle bundle = data.getExtras();
                         if (bundle != null) {
-                            mMediaData = bundle.getParcelable(IConstants.BundleKey.MEDIA_DATA);
+                            mMediaData = bundle.getParcelable(IDMCameraConstants.BundleKey.MEDIA_DATA);
 
                             for (final String path : mMediaData.getSelectedImagesOrVideosPathList()) {
                                 Log.d("GPU", "before photo path ---- > " + path);

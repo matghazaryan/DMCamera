@@ -1,6 +1,6 @@
 package com.dm.camera.constants;
 
-public interface IConstants {
+public interface IDMCameraConstants {
 
     enum Camera {
         PHOTO,
