@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.dm.camera">
+
+    <application>
+        <activity
+            android:name="com.dm.camera.activities.DMCameraActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="com.dm.camera.activities.PlayVideoActivity"
+            android:screenOrientation="portrait" />
+    </application>
+
+</manifest>
